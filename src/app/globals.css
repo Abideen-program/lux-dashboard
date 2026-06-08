@@ -1,0 +1,118 @@
+/* ── Lux Theme Overrides ─────────────────────────────────── */
+:root {
+  --lux-font-sans: 'Inter', system-ui, sans-serif;
+  --lux-primary:   #6366f1;
+  --lux-accent:    #f472b6;
+}
+
+html, body, #__next {
+  height: 100%;
+  font-family: var(--lux-font-sans);
+  background: var(--lux-bg);
+  color: var(--lux-fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--lux-border); border-radius: 99px; }
+
+/* ── Only things Lux cannot do ───────────────────────────── */
+
+/* Full-app shell grid — Lux has no full-viewport grid primitive */
+.dash-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 56px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+.dash-sidebar {
+  grid-row: 1 / -1;
+  border-right: 1px solid var(--lux-border);
+  background: var(--lux-bg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.dash-sidebar::-webkit-scrollbar { display: none; }
+.dash-main { overflow-y: auto; }
+
+/* Sidebar nav item — Lux has no nav-item primitive */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--lux-fg);
+  opacity: 0.55;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.nav-item:hover  { opacity: 0.9; background: var(--lux-surface-1); }
+.nav-item.active {
+  opacity: 1;
+  background: color-mix(in srgb, var(--lux-primary) 12%, transparent);
+  color: var(--lux-primary);
+}
+.nav-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  padding: 0 0.875rem;
+  margin: 1rem 0 0.35rem;
+}
+
+/* Table — Lux has no table primitive */
+.dash-table { width: 100%; border-collapse: collapse; }
+.dash-table th {
+  text-align: left;
+  padding: 0.6rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  border-bottom: 1px solid var(--lux-border);
+}
+.dash-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: middle;
+  font-size: 0.875rem;
+}
+.dash-table tr:last-child td { border-bottom: none; }
+.dash-table tbody tr:hover td { background: var(--lux-surface-1); }
+
+/* Avatar — Lux has no circular avatar primitive */
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700;
+  flex-shrink: 0; color: #fff;
+}
+
+/* Light mode overrides */
+[scheme="light"] .dash-sidebar { background: #f0f0f5; }
+[scheme="light"] .dash-main    { background: #f4f4f8; }
+[scheme="light"] .nav-item     { color: #0f0f13; }
+[scheme="light"] .dash-table td,
+[scheme="light"] .dash-table th { color: #0f0f13; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dash-shell { grid-template-columns: 1fr; grid-template-rows: 56px 1fr; }
+  .dash-sidebar { display: none; }
+}
