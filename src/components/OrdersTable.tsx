@@ -56,7 +56,7 @@ export default function OrdersTable() {
                   <span style={{ fontWeight: 700 }}>{o.amount}</span>
                 </td>
                 <td>
-                  <span badge="true" tone={o.tone as any} style={{ fontSize: '0.7rem' }}>
+                  <span badge="dot" tone={o.tone} style={{ fontSize: '0.7rem' }}>
                     {o.status}
                   </span>
                 </td>

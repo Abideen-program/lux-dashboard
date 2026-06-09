@@ -31,7 +31,7 @@ export default function TopProducts() {
               </div>
             </div>
             {/* Lux progress bar */}
-            <div progress="striped" tone={p.tone as any}>
+            <div progress="true" tone={p.tone}>
               <div progress-bar="true" style={{ width: `${p.share}%`, background: p.color }} />
             </div>
             <div text="caption" style={{ fontSize: '0.68rem' }}>{p.share}% of total</div>
