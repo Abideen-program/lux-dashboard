@@ -34,7 +34,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Reports list */}
-        <div surface="matte" radius="xl" elevation="low" style={{ overflow: 'hidden' }}>
+        <div surface="matte" radius="xl" elevation="low">
           <div style={{ padding: '1rem 1.25rem', borderBottom: '1px solid var(--lux-border)' }}>
             <div text="label" style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none', letterSpacing: 0 }}>Recent Reports</div>
           </div>
@@ -74,7 +74,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Scheduled reports */}
-        <div surface="matte" radius="xl" elevation="low" style={{ overflow: 'hidden' }}>
+        <div surface="matte" radius="xl" elevation="low">
           <div style={{ padding: '1rem 1.25rem', borderBottom: '1px solid var(--lux-border)' }}>
             <div text="label" style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none', letterSpacing: 0 }}>Scheduled Reports</div>
           </div>

@@ -6,6 +6,12 @@ import Header from '@/components/Header';
 
 const tabs = ['Profile', 'Billing', 'Notifications', 'Security', 'Team'];
 
+function toast(msg: string, opts?: { title?: string; type?: string }) {
+  if (typeof window !== 'undefined' && window.Lux) {
+    window.Lux.toast(msg, opts);
+  }
+}
+
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState('Profile');
 
@@ -74,7 +80,8 @@ export default function SettingsPage() {
             </div>
 
             <div layout="row" gap="sm">
-              <button surface="solid" tone="primary" radius="full" density="default" ripple="true">
+              <button surface="solid" tone="primary" radius="full" density="default" ripple="true"
+                onClick={() => toast('Profile updated!', { title: 'Saved ✓', type: 'success' })}>
                 Save Changes
               </button>
               <button surface="ghost" tone="neutral" radius="full" density="default">
@@ -158,7 +165,9 @@ export default function SettingsPage() {
                   </div>
                 </div>
               ))}
-              <button surface="solid" tone="primary" radius="full" density="default" ripple="true" style={{ width: 'fit-content' }}>
+              <button surface="solid" tone="primary" radius="full" density="default" ripple="true"
+                style={{ width: 'fit-content' }}
+                onClick={() => toast('Password updated!', { title: 'Saved ✓', type: 'success' })}>
                 Update Password
               </button>
             </div>
@@ -198,7 +207,9 @@ export default function SettingsPage() {
           <div layout="stack" gap="md" style={{ maxWidth: 640 }}>
             <div layout="row" justify="between" align="center">
               <div text="label" style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none', letterSpacing: 0 }}>Team Members</div>
-              <button surface="solid" tone="primary" radius="full" density="compact" ripple="true" style={{ fontSize: '0.78rem' }}>
+              <button surface="solid" tone="primary" radius="full" density="compact" ripple="true"
+                style={{ fontSize: '0.78rem' }}
+                onClick={() => toast('Invite sent!', { title: 'Done ✓', type: 'success' })}>
                 + Invite Member
               </button>
             </div>

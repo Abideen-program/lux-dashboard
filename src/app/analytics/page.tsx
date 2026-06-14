@@ -29,7 +29,7 @@ export default function AnalyticsPage() {
     <div className="dash-shell">
       <Sidebar />
       <Header title="Analytics" />
-      <main className="dash-main" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <main className="dash-main" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', overflowY: 'auto', minHeight: 0 }}>
 
         <div>
           <h2 text="heading" style={{ marginBottom: '0.25rem' }}>Analytics</h2>
@@ -53,7 +53,7 @@ export default function AnalyticsPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '1rem' }}>
           <RevenueChart />
 
-          <div surface="matte" radius="xl" elevation="low" layout="stack" style={{ height: '100%' }}>
+          <div surface="matte" radius="xl" elevation="low" layout="stack">
             <div style={{ padding: '1.25rem 1.25rem 0' }}>
               <div text="label" style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none', letterSpacing: 0 }}>Traffic Sources</div>
               <div text="caption" style={{ marginTop: '0.1rem' }}>Last 30 days</div>
@@ -78,11 +78,11 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Top Pages Table */}
-        <div surface="matte" radius="xl" elevation="low" style={{ overflow: 'hidden' }}>
-          <div layout="row" justify="between" align="center" style={{ padding: '1rem 1.25rem', borderBottom: '1px solid var(--lux-border)' }}>
-            <div layout="stack" gap="xs">
-              <div text="label" style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none', letterSpacing: 0 }}>Top Pages</div>
-              <div text="caption">By page views</div>
+        <div style={{ background: 'var(--lux-surface-1)', border: '1px solid var(--lux-border)', borderRadius: '0.875rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.25rem', borderBottom: '1px solid var(--lux-border)' }}>
+            <div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Top Pages</div>
+              <div style={{ fontSize: '0.72rem', opacity: 0.45, marginTop: '0.1rem' }}>By page views</div>
             </div>
           </div>
           <div style={{ overflowX: 'auto' }}>
@@ -98,8 +98,8 @@ export default function AnalyticsPage() {
                 {topPages.map((p) => (
                   <tr key={p.path}>
                     <td><span style={{ fontFamily: 'monospace', fontSize: '0.82rem' }}>{p.path}</span></td>
-                    <td><span style={{ fontWeight: 700 }}>{p.views}</span></td>
-                    <td><span text="caption" style={{ fontSize: '0.82rem' }}>{p.avgTime}</span></td>
+                    {/* <td><span style={{ fontWeight: 700 }}>{p.views}</span></td> */}
+                    {/* <td><span style={{ fontSize: '0.82rem', opacity: 0.65 }}>{p.avgTime}</span></td> */}
                   </tr>
                 ))}
               </tbody>

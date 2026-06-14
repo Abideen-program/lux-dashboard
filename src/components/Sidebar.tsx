@@ -2,98 +2,113 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
+import { useSidebar } from './SidebarContext';
 
 const navItems = [
-  { icon: '⬡', label: 'Overview',     href: '/',             section: 'main'  },
-  { icon: '📊', label: 'Analytics',   href: '/analytics',     section: 'main'  },
-  { icon: '🛒', label: 'Orders',      href: '/orders',        section: 'main'  },
-  { icon: '👥', label: 'Customers',   href: '/customers',     section: 'main'  },
-  { icon: '📦', label: 'Products',    href: '/products',      section: 'main'  },
-  { icon: '💬', label: 'Messages',    href: '/messages',       section: 'main'  },
-  { icon: '📁', label: 'Reports',     href: '/reports',        section: 'other' },
-  { icon: '🔗', label: 'Integrations',href: '/integrations',   section: 'other' },
-  { icon: '⚙️', label: 'Settings',    href: '/settings',       section: 'other' },
+  { icon: '⬡', label: 'Overview',      href: '/',              section: 'main'  },
+  { icon: '📊', label: 'Analytics',    href: '/analytics',      section: 'main'  },
+  { icon: '🛒', label: 'Orders',       href: '/orders',         section: 'main'  },
+  { icon: '👥', label: 'Customers',    href: '/customers',      section: 'main'  },
+  { icon: '📦', label: 'Products',     href: '/products',       section: 'main'  },
+  { icon: '💬', label: 'Messages',     href: '/messages',        section: 'main'  },
+  { icon: '📁', label: 'Reports',      href: '/reports',         section: 'other' },
+  { icon: '🔗', label: 'Integrations', href: '/integrations',    section: 'other' },
+  { icon: '⚙️', label: 'Settings',     href: '/settings',        section: 'other' },
 ];
 
 export default function Sidebar() {
-  const pathname = usePathname();
+  const pathname   = usePathname();
+  const { isOpen, close } = useSidebar();
+
   const mainItems  = navItems.filter(i => i.section === 'main');
   const otherItems = navItems.filter(i => i.section === 'other');
 
+  // Close sidebar on route change (mobile)
+  useEffect(() => { close(); }, [pathname]);
+
   return (
-    <aside className="dash-sidebar">
-
-      {/* Logo */}
+    <>
+      {/* Mobile backdrop */}
       <div
-        layout="row"
-        gap="sm"
-        align="center"
-        style={{ padding: '0 1.25rem', height: '56px', borderBottom: '1px solid var(--lux-border)', flexShrink: 0 }}
-      >
+        className={`mobile-backdrop ${isOpen ? 'open' : ''}`}
+        onClick={close}
+      />
+
+      <aside className={`dash-sidebar ${isOpen ? 'open' : ''}`}>
+
+        {/* Logo */}
         <div
-          surface="solid"
-          tone="primary"
-          radius="md"
-          style={{ width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 800, color: '#fff', flexShrink: 0 }}
-        >
-          ✦
-        </div>
-        <span style={{ fontWeight: 700, fontSize: '1rem', letterSpacing: '-0.02em' }}>
-          Lux<span style={{ opacity: 0.35 }}>Dash</span>
-        </span>
-        <span badge="true" tone="primary" style={{ fontSize: '0.55rem', marginLeft: 'auto' }}>v1</span>
-      </div>
-
-      {/* Navigation */}
-      <nav style={{ padding: '0.75rem', flex: 1 }}>
-        <div className="nav-label">Main</div>
-        {mainItems.map(item => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className={`nav-item ${pathname === item.href ? 'active' : ''}`}
-          >
-            <span style={{ fontSize: '1rem', width: 20, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
-            {item.label}
-            {item.label === 'Messages' && (
-              <span badge="counter" tone="primary" style={{ marginLeft: 'auto', fontSize: '0.6rem' }}>3</span>
-            )}
-          </Link>
-        ))}
-
-        <div className="nav-label">System</div>
-        {otherItems.map(item => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className={`nav-item ${pathname === item.href ? 'active' : ''}`}
-          >
-            <span style={{ fontSize: '1rem', width: 20, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-
-      {/* User profile */}
-      <div style={{ padding: '0.875rem', borderTop: '1px solid var(--lux-border)' }}>
-        <div
-          surface="matte"
-          radius="lg"
-          density="compact"
-          motion="subtle"
           layout="row"
           gap="sm"
           align="center"
-          style={{ cursor: 'pointer' }}
+          style={{ padding: '0 1.25rem', height: '56px', borderBottom: '1px solid var(--lux-border)', flexShrink: 0 }}
         >
-          <div className="avatar" style={{ background: 'linear-gradient(135deg, #6366f1, #f472b6)' }}>AB</div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '0.82rem', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Abideen</div>
-            <div text="caption" style={{ fontSize: '0.7rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>admin@luxcss.dev</div>
+          <div
+            surface="solid"
+            tone="primary"
+            radius="md"
+            style={{ width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 800, color: '#fff', flexShrink: 0 }}
+          >
+            ✦
           </div>
-          <span style={{ opacity: 0.35, fontSize: '0.75rem' }}>⋯</span>
+          <span style={{ fontWeight: 700, fontSize: '1rem', letterSpacing: '-0.02em' }}>
+            Lux<span style={{ opacity: 0.35 }}>Dash</span>
+          </span>
+          <span badge="true" tone="primary" style={{ fontSize: '0.55rem', marginLeft: 'auto' }}>v1</span>
         </div>
-      </div>
-    </aside>
+
+        {/* Navigation */}
+        <nav style={{ padding: '0.75rem', flex: 1 }}>
+          <div className="nav-label">Main</div>
+          {mainItems.map(item => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`nav-item ${pathname === item.href ? 'active' : ''}`}
+            >
+              <span style={{ fontSize: '1rem', width: 20, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
+              {item.label}
+              {item.label === 'Messages' && (
+                <span badge="counter" tone="primary" style={{ marginLeft: 'auto', fontSize: '0.6rem' }}>3</span>
+              )}
+            </Link>
+          ))}
+
+          <div className="nav-label">System</div>
+          {otherItems.map(item => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`nav-item ${pathname === item.href ? 'active' : ''}`}
+            >
+              <span style={{ fontSize: '1rem', width: 20, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* User profile */}
+        <div style={{ padding: '0.875rem', borderTop: '1px solid var(--lux-border)' }}>
+          <div
+            surface="matte"
+            radius="lg"
+            density="compact"
+            motion="subtle"
+            layout="row"
+            gap="sm"
+            align="center"
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="avatar" style={{ background: 'linear-gradient(135deg, #6366f1, #f472b6)' }}>AB</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: '0.82rem', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Abideen</div>
+              <div text="caption" style={{ fontSize: '0.7rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>admin@luxcss.dev</div>
+            </div>
+            <span style={{ opacity: 0.35, fontSize: '0.75rem' }}>⋯</span>
+          </div>
+        </div>
+      </aside>
+    </>
   );
 }

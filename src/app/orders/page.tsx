@@ -1,3 +1,4 @@
+'use client'
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 
@@ -28,7 +29,8 @@ export default function OrdersPage() {
             <h2 text="heading" style={{ marginBottom: '0.25rem' }}>Orders</h2>
             <p text="caption">{allOrders.length} total orders</p>
           </div>
-          <button surface="solid" tone="primary" radius="full" density="compact" ripple="true">
+          <button surface="solid" tone="primary" radius="full" density="compact" ripple="true"
+            onClick={() => typeof window !== 'undefined' && window.Lux?.toast('Feature coming soon', { title: 'Info', type: 'info' })}>
             + New Order
           </button>
         </div>
@@ -50,7 +52,7 @@ export default function OrdersPage() {
         </div>
 
         {/* Orders Table */}
-        <div surface="matte" radius="xl" elevation="low" style={{ overflow: 'hidden' }}>
+        <div surface="matte" radius="xl" elevation="low">
           <div style={{ overflowX: 'auto' }}>
             <table className="dash-table">
               <thead>
@@ -74,8 +76,8 @@ export default function OrdersPage() {
                         <span style={{ fontWeight: 500 }}>{o.customer}</span>
                       </div>
                     </td>
-                    <td><span text="caption" style={{ fontSize: '0.82rem' }}>{o.product}</span></td>
-                    <td><span text="caption" style={{ fontSize: '0.82rem' }}>{o.date}</span></td>
+                    <td><span style={{ fontSize: '0.82rem', opacity: 0.65 }}>{o.product}</span></td>
+                    <td><span style={{ fontSize: '0.82rem', opacity: 0.65 }}>{o.date}</span></td>
                     <td><span style={{ fontWeight: 700 }}>{o.amount}</span></td>
                     <td><span badge="true" tone={o.tone} style={{ fontSize: '0.7rem' }}>{o.status}</span></td>
                     <td>

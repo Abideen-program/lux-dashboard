@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSidebar } from './SidebarContext';
 
 export default function Header({ title = 'Overview' }: { title?: string }) {
   const [scheme, setScheme] = useState<'dark' | 'light'>('dark');
-  const [search, setSearch]  = useState('');
+  const { toggle } = useSidebar();
 
   useEffect(() => {
     const stored = localStorage.getItem('lux-scheme') as 'dark' | 'light' | null;
@@ -32,26 +33,44 @@ export default function Header({ title = 'Overview' }: { title?: string }) {
       radius="none"
       style={{ height: '56px', borderBottom: '1px solid var(--lux-border)', padding: '0 1.5rem' }}
     >
-      {/* Left — page title */}
+      {/* Left */}
       <div layout="row" gap="sm" align="center">
+        {/* Hamburger — mobile only */}
+        <button
+          className="hamburger"
+          onClick={toggle}
+          surface="matte"
+          radius="full"
+          style={{ width: 34, height: 34, display: 'none', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', padding: 0, flexShrink: 0 }}
+        >
+          ☰
+        </button>
         <h1 text="label" style={{ fontSize: '0.95rem', fontWeight: 600, letterSpacing: '-0.01em', textTransform: 'none' }}>
           {title}
         </h1>
         <span badge="dot" tone="success" style={{ fontSize: '0.65rem' }}>Live</span>
       </div>
 
-      {/* Right — actions */}
+      {/* Right */}
       <div layout="row" gap="sm" align="center">
 
-        {/* Search */}
-        <div surface="matte" radius="full" layout="row" gap="sm" align="center" density="compact">
+        {/* Search — opens command palette */}
+        <div
+          surface="matte"
+          radius="full"
+          layout="row"
+          gap="sm"
+          align="center"
+          density="compact"
+          style={{ display: 'flex', cursor: 'pointer' }}
+          onClick={() => {
+            const e = new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true });
+            window.dispatchEvent(e);
+          }}
+        >
           <span style={{ opacity: 0.4, fontSize: '0.8rem' }}>🔍</span>
-          <input
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search…"
-            style={{ background: 'none', border: 'none', outline: 'none', fontSize: '0.8rem', width: '130px', color: 'var(--lux-fg)' }}
-          />
+          <span style={{ fontSize: '0.8rem', opacity: 0.45, width: '130px' }}>Search…</span>
+          <kbd style={{ fontSize: '0.6rem', opacity: 0.4, background: 'var(--lux-surface-2)', padding: '0.15em 0.4em', borderRadius: 4, fontFamily: 'monospace', flexShrink: 0 }}>⌘K</kbd>
         </div>
 
         {/* Notifications */}
