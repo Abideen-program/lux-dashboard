@@ -1,12 +1,19 @@
 'use client';
 
 import 'luxcss/dist/lux.js';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
-// This component renders nothing — it exists purely so that
-// `lux.js` (a side-effect import) is included in the CLIENT
-// bundle. In Next.js App Router, app/layout.tsx is a Server
-// Component, and side-effect imports there never reach the
-// browser. Importing from a 'use client' component fixes this.
 export default function LuxLoader() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Re-init Lux on every route change so reveal=, ripple=,
+    // tooltip=, motion= etc. work on freshly rendered elements
+    if (typeof window !== 'undefined' && window.Lux) {
+      window.Lux.init();
+    }
+  }, [pathname]);
+
   return null;
 }

@@ -1,21 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { icon: '⬡', label: 'Overview',      section: 'main'  },
-  { icon: '📊', label: 'Analytics',    section: 'main'  },
-  { icon: '🛒', label: 'Orders',       section: 'main'  },
-  { icon: '👥', label: 'Customers',    section: 'main'  },
-  { icon: '📦', label: 'Products',     section: 'main'  },
-  { icon: '💬', label: 'Messages',     section: 'main'  },
-  { icon: '📁', label: 'Reports',      section: 'other' },
-  { icon: '🔗', label: 'Integrations', section: 'other' },
-  { icon: '⚙️', label: 'Settings',     section: 'other' },
+  { icon: '⬡', label: 'Overview',     href: '/',             section: 'main'  },
+  { icon: '📊', label: 'Analytics',   href: '/analytics',     section: 'main'  },
+  { icon: '🛒', label: 'Orders',      href: '/orders',        section: 'main'  },
+  { icon: '👥', label: 'Customers',   href: '/customers',     section: 'main'  },
+  { icon: '📦', label: 'Products',    href: '/products',      section: 'main'  },
+  { icon: '💬', label: 'Messages',    href: '/messages',       section: 'main'  },
+  { icon: '📁', label: 'Reports',     href: '/reports',        section: 'other' },
+  { icon: '🔗', label: 'Integrations',href: '/integrations',   section: 'other' },
+  { icon: '⚙️', label: 'Settings',    href: '/settings',       section: 'other' },
 ];
 
 export default function Sidebar() {
-  const [active, setActive] = useState('Overview');
+  const pathname = usePathname();
   const mainItems  = navItems.filter(i => i.section === 'main');
   const otherItems = navItems.filter(i => i.section === 'other');
 
@@ -47,29 +48,29 @@ export default function Sidebar() {
       <nav style={{ padding: '0.75rem', flex: 1 }}>
         <div className="nav-label">Main</div>
         {mainItems.map(item => (
-          <button
+          <Link
             key={item.label}
-            className={`nav-item ${active === item.label ? 'active' : ''}`}
-            onClick={() => setActive(item.label)}
+            href={item.href}
+            className={`nav-item ${pathname === item.href ? 'active' : ''}`}
           >
             <span style={{ fontSize: '1rem', width: 20, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
             {item.label}
             {item.label === 'Messages' && (
               <span badge="counter" tone="primary" style={{ marginLeft: 'auto', fontSize: '0.6rem' }}>3</span>
             )}
-          </button>
+          </Link>
         ))}
 
         <div className="nav-label">System</div>
         {otherItems.map(item => (
-          <button
+          <Link
             key={item.label}
-            className={`nav-item ${active === item.label ? 'active' : ''}`}
-            onClick={() => setActive(item.label)}
+            href={item.href}
+            className={`nav-item ${pathname === item.href ? 'active' : ''}`}
           >
             <span style={{ fontSize: '1rem', width: 20, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
             {item.label}
-          </button>
+          </Link>
         ))}
       </nav>
 

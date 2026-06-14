@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function Header() {
+export default function Header({ title = 'Overview' }: { title?: string }) {
   const [scheme, setScheme] = useState<'dark' | 'light'>('dark');
   const [search, setSearch]  = useState('');
 
@@ -35,7 +35,7 @@ export default function Header() {
       {/* Left — page title */}
       <div layout="row" gap="sm" align="center">
         <h1 text="label" style={{ fontSize: '0.95rem', fontWeight: 600, letterSpacing: '-0.01em', textTransform: 'none' }}>
-          Overview
+          {title}
         </h1>
         <span badge="dot" tone="success" style={{ fontSize: '0.65rem' }}>Live</span>
       </div>

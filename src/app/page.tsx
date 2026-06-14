@@ -10,7 +10,7 @@ export default function DashboardPage() {
   return (
     <div className="dash-shell">
       <Sidebar />
-      <Header />
+      <Header title="Overview" />
       <main className="dash-main" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
 
         {/* Page heading */}

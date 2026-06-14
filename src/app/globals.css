@@ -54,6 +54,7 @@ html, body, #__next {
   cursor: pointer;
   transition: all 0.15s;
   border: none;
+  text-decoration: none;
   background: none;
   width: 100%;
   text-align: left;

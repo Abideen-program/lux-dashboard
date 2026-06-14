@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "luxcss": "^2.0.3",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18",
-    "luxcss": "latest"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
