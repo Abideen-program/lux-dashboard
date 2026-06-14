@@ -98,8 +98,8 @@ export default function AnalyticsPage() {
                 {topPages.map((p) => (
                   <tr key={p.path}>
                     <td><span style={{ fontFamily: 'monospace', fontSize: '0.82rem' }}>{p.path}</span></td>
-                    {/* <td><span style={{ fontWeight: 700 }}>{p.views}</span></td> */}
-                    {/* <td><span style={{ fontSize: '0.82rem', opacity: 0.65 }}>{p.avgTime}</span></td> */}
+                    <td><span style={{ fontWeight: 700 }}>{p.views}</span></td>
+                    <td><span style={{ fontSize: '0.82rem', opacity: 0.65 }}>{p.avgTime}</span></td>
                   </tr>
                 ))}
               </tbody>
