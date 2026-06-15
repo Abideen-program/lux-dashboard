@@ -25,13 +25,13 @@ export default function DashboardPage() {
         <StatsCards />
 
         {/* Row 1 — Chart + Products */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '1rem' }}>
+        <div className="chart-row" style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '1rem' }}>
           <RevenueChart />
           <TopProducts />
         </div>
 
         {/* Row 2 — Orders + Activity */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '1rem' }}>
+        <div className="orders-row" style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '1rem' }}>
           <OrdersTable />
           <ActivityFeed />
         </div>

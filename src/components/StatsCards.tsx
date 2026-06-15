@@ -9,7 +9,7 @@ const stats = [
 
 export default function StatsCards() {
   return (
-    <div layout="grid" cols="2" md-cols="4" gap="md">
+    <div className="stat-grid" layout="grid" cols="2" md-cols="4" gap="md">
       {stats.map((s) => (
         <div
           key={s.label}
@@ -26,7 +26,7 @@ export default function StatsCards() {
             <div style={{ width: 36, height: 36, borderRadius: 8, background: `color-mix(in srgb, ${s.iconColor} 15%, transparent)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>
               {s.icon}
             </div>
-            <span badge="dot" tone={s.tone} style={{ fontSize: '0.7rem' }}>
+            <span badge="true" tone={s.tone} style={{ fontSize: '0.7rem' }}>
               {s.dir === 'up' ? '↑' : '↓'} {s.change}
             </span>
           </div>

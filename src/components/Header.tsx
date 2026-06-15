@@ -56,6 +56,7 @@ export default function Header({ title = 'Overview' }: { title?: string }) {
 
         {/* Search — opens command palette */}
         <div
+          className="search-bar"
           surface="matte"
           radius="full"
           layout="row"
@@ -69,8 +70,8 @@ export default function Header({ title = 'Overview' }: { title?: string }) {
           }}
         >
           <span style={{ opacity: 0.4, fontSize: '0.8rem' }}>🔍</span>
-          <span style={{ fontSize: '0.8rem', opacity: 0.45, width: '130px' }}>Search…</span>
-          <kbd style={{ fontSize: '0.6rem', opacity: 0.4, background: 'var(--lux-surface-2)', padding: '0.15em 0.4em', borderRadius: 4, fontFamily: 'monospace', flexShrink: 0 }}>⌘K</kbd>
+          <span className="search-text" style={{ fontSize: '0.8rem', opacity: 0.45, width: '130px' }}>Search…</span>
+          <kbd className="search-text" style={{ fontSize: '0.6rem', opacity: 0.4, background: 'var(--lux-surface-2)', padding: '0.15em 0.4em', borderRadius: 4, fontFamily: 'monospace', flexShrink: 0 }}>⌘K</kbd>
         </div>
 
         {/* Notifications */}
