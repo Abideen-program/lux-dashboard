@@ -50,7 +50,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Chart + Traffic Sources */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '1rem' }}>
+        <div className="chart-row" style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '1rem' }}>
           <RevenueChart />
 
           <div surface="matte" radius="xl" elevation="low" layout="stack">
