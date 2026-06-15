@@ -114,7 +114,16 @@ html, body, #__next {
 [scheme="light"] .dash-table td,
 [scheme="light"] .dash-table th { color: #0f0f13; }
 
-/* Mobile */
+/* ── Responsive ──────────────────────────────────────────── */
+
+/* Tablet — hide sidebar, collapse search */
+@media (max-width: 1024px) {
+  .dash-shell {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+/* Mobile + Tablet sidebar behaviour */
 @media (max-width: 768px) {
   .dash-shell {
     grid-template-columns: 1fr;
@@ -141,12 +150,58 @@ html, body, #__next {
     backdrop-filter: blur(2px);
     z-index: 199;
   }
-  .mobile-backdrop.open {
-    display: block;
+  .mobile-backdrop.open { display: block; }
+  .hamburger { display: flex !important; }
+
+  /* Main content padding */
+  .dash-main { padding: 1rem !important; }
+
+  /* Hide search bar text on mobile — keep icon */
+  .search-text { display: none; }
+
+  /* Stack grids to single column on mobile */
+  [layout="grid"] {
+    grid-template-columns: 1fr !important;
   }
-  .hamburger {
-    display: flex !important;
+
+  /* Responsive two-column grids */
+  .grid-2col,
+  .chart-row,
+  .orders-row {
+    grid-template-columns: 1fr !important;
   }
+
+  /* Table — allow horizontal scroll */
+  .dash-table th,
+  .dash-table td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Hide less important table columns on mobile */
+  .dash-table .hide-mobile { display: none; }
+
+  /* Avatar size */
+  .avatar { width: 28px; height: 28px; font-size: 0.65rem; }
+
+  /* Stat cards — 2 col on mobile */
+  .stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Stat cards — single col on very small screens */
+  .stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hide search entirely on very small screens */
+  .search-bar { display: none !important; }
+
+  /* Tighten header */
+  .dash-header { padding: 0 0.875rem !important; }
 }
 
 @media (min-width: 769px) {
