@@ -25,7 +25,7 @@ export default function MessagesPage() {
       <Header title="Messages" />
       <main className="dash-main" style={{ padding: '1.75rem', height: 'calc(100vh - 56px)', boxSizing: 'border-box' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '1rem', height: '100%' }}>
+        <div className="chart-row" style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '1rem', height: '100%' }}>
 
           {/* Conversation list */}
           <div surface="matte" radius="xl" elevation="low" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
