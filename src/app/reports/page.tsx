@@ -14,6 +14,7 @@ const scheduled = [
   { name: 'Weekly Revenue Digest', frequency: 'Every Monday', next: 'Jun 17, 2026' },
   { name: 'Monthly Customer Report', frequency: 'First of each month', next: 'Jul 1, 2026' },
   { name: 'Quarterly Business Review', frequency: 'Every 3 months', next: 'Jul 1, 2026' },
+  { name: 'Yearly Business Review', frequency: 'Every 12 months', next: 'Jan 1, 2026' },
 ];
 
 export default function ReportsPage() {
